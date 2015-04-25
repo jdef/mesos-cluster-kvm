@@ -47,3 +47,4 @@ service zookeeper restart
 service mesos-master restart
 service mesos-slave restart
 service marathon restart
+service haproxy restart
