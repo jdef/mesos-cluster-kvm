@@ -17,7 +17,8 @@ echo "deb http://repos.mesosphere.io/${DISTRO} ${CODENAME} main" | \
       sudo tee /etc/apt/sources.list.d/mesosphere.list
 
 apt-get -y update
-apt-get -y install mesos marathon haproxy curl
+apt-cache showpkg mesos
+apt-get -y install mesos=0.21.1-1.1.ubuntu1404 marathon haproxy curl
 
 # Docker support
 echo 'docker,mesos' > /etc/mesos-slave/containerizers

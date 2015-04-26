@@ -25,6 +25,8 @@ echo $my_ip > /etc/mesos-master/ip
 cp /etc/mesos-master/{hostname,ip} /etc/mesos-slave
 mkdir -p /etc/marathon/conf
 cp /etc/mesos-master/hostname /etc/marathon/conf
+echo 32767 >/etc/marathon/conf/local_port_min
+echo 49151 >/etc/marathon/conf/local_port_max
 
 # Zookeeper masters IPs
 buf="zk://"
@@ -38,6 +40,8 @@ do
     fi
 done
 echo ${buf}/mesos >/etc/mesos/zk
+echo ${buf}/marathon >/etc/marathon/conf/zk
+echo ${buf}/mesos >/etc/marathon/conf/master
 
 # Quorum
 echo $(expr $num_nodes / 2 + 1) >/etc/mesos-master/quorum
